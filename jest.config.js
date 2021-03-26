@@ -1,8 +1,11 @@
 module.exports = {
-  preset: '@vue/cli-plugin-unit-jest',
-  testMatch: ['**/tests/**/?(*.)+(spec|test).[jt]s?(x)'],
+  preset: "@vue/cli-plugin-unit-jest",
+  testMatch: ["**/tests/**/?(*.)+(spec|test).[jt]s?(x)"],
   transform: {
-    '^.+\\.vue$': 'vue-jest',
+    "^.+\\.vue$": "vue-jest",
   },
-  setupFilesAfterEnv: ['./tests/jest.setup.js'],
-}
+  setupFilesAfterEnv: ["./jest.setup.js"],
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
+};

@@ -9,7 +9,7 @@
         class="cell"
         :style="{
           '--cell-size': cellSize,
-          'background-color': getRandomColor(),
+          'background-color': getColor(),
         }"
       ></td>
     </tr>
@@ -17,8 +17,10 @@
 </template>
 
 <script>
+import { getRGBColor } from "@/lib/colorGenerator.js";
+
 export default {
-  name: "Home",
+  name: "GameOfLife",
   data() {
     return {
       cellSize: 10,
@@ -30,13 +32,8 @@ export default {
     onCellClicked(x, y) {
       console.log("clicked cell", x, y);
     },
-    getRandomColor() {
-      var letters = "0123456789ABCDEF";
-      var color = "#";
-      for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
+    getColor() {
+      return getRGBColor();
     },
   },
   created() {
