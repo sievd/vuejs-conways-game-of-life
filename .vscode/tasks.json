@@ -1,0 +1,49 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "nada",
+            "type": "shell",
+            "command": "echo",
+            "problemMatcher": [],
+            "presentation":{
+                "echo": false,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+		{
+			"type": "npm",
+			"script": "serve",
+			"problemMatcher": [],
+			"label": "serve",
+			"presentation": {
+				"clear": true
+			}
+		},
+		{
+			"type": "shell",
+			"command": "npx jest",
+			"problemMatcher": [],
+			"label": "run test",
+			"presentation": {
+				"clear": true
+			}
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "vue-cli-service build"
+		}
+	]
+}
