@@ -86,6 +86,7 @@ class GameOfLife {
         }
       }
     }
+    this.seed = matrix;
     return matrix;
   }
 }

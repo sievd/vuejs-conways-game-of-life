@@ -1,17 +1,16 @@
 <template>
-  <table>
-    <tr v-for="x in numOfRows" :key="x">
+  <table :style="{ '--cell-size': cellSize }">
+    <tr v-for="x in matrix.length" :key="x">
       <td
-        v-for="y in numOfColumns"
+        v-for="y in matrix[0].length"
         :key="y"
         :id="`cell-${x}-${y}`"
-        @click="onCellClicked(x, y)"
         @dragenter="onCellFocus(x, y)"
-        class="cell"
         :style="{
-          height: cellSize,
-          width: cellSize,
+          'background-color':
+            matrix[x - 1][y - 1] == 1 ? getRandomColor() : 'white',
         }"
+        class="cell"
       ></td>
     </tr>
   </table>
@@ -19,32 +18,24 @@
 
 <script>
 import { getRGBColor } from "@/helpers/colorGenerator.js";
-import { createEmptyMatrix } from "@/helpers/gameOfLife.js";
 
 export default {
   name: "Matrix",
   props: {
-    numOfRows: { type: Number, required: true },
-    numOfColumns: { type: Number, required: true },
+    matrix: { type: Array, required: true },
     cellSize: { type: Number, required: true },
-  },
-  data() {
-    return {
-      matrix: createEmptyMatrix(this.numOfRows, this.numOfColumns),
-    };
+    isSeed: { type: Boolean, required: true },
   },
   methods: {
-    onCellClicked(x, y) {
-      console.log("clicked cell", x, y);
-    },
-    getColor() {
+    getRandomColor() {
       return getRGBColor();
     },
     onCellFocus(x, y) {
-      const cell = document.getElementById(`cell-${x}-${y}`);
-      cell.style.backgroundColor = this.getColor();
-      this.matrix[x - 1][y - 1] = 1;
-      console.log(x, y);
+      if (this.isSeed) {
+        const cell = document.getElementById(`cell-${x}-${y}`);
+        cell.style.backgroundColor = this.getRandomColor();
+        this.$emit("cell-focus", x - 1, y - 1);
+      }
     },
   },
 };
@@ -61,5 +52,10 @@ td {
 
 th {
   width: 100%;
+}
+
+td {
+  height: var(--cell-size);
+  width: var(--cell-size);
 }
 </style>
