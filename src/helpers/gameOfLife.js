@@ -91,3 +91,4 @@ class GameOfLife {
 }
 
 export default GameOfLife;
+export { createEmptyMatrix };

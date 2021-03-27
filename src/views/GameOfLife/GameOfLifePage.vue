@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      <OptionsGeneal />
       <Matrix
         :numOfColumns="numOfColumns"
         :numOfRows="numOfRows"
@@ -13,10 +14,11 @@
 
 <script>
 import Matrix from "./Matrix.vue";
+import OptionsGeneal from "./OptionsGeneal.vue";
 
 export default {
   name: "GameOfLife",
-  components: { Matrix },
+  components: { Matrix, OptionsGeneal },
   data() {
     return {
       cellSize: 10,

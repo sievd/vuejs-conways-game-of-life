@@ -6,11 +6,11 @@
         :key="y"
         :id="`cell-${x}-${y}`"
         @click="onCellClicked(x, y)"
+        @dragenter="onCellFocus(x, y)"
         class="cell"
         :style="{
           height: cellSize,
           width: cellSize,
-          'background-color': getColor(),
         }"
       ></td>
     </tr>
@@ -19,6 +19,7 @@
 
 <script>
 import { getRGBColor } from "@/helpers/colorGenerator.js";
+import { createEmptyMatrix } from "@/helpers/gameOfLife.js";
 
 export default {
   name: "Matrix",
@@ -27,12 +28,23 @@ export default {
     numOfColumns: { type: Number, required: true },
     cellSize: { type: Number, required: true },
   },
+  data() {
+    return {
+      matrix: createEmptyMatrix(this.numOfRows, this.numOfColumns),
+    };
+  },
   methods: {
     onCellClicked(x, y) {
       console.log("clicked cell", x, y);
     },
     getColor() {
       return getRGBColor();
+    },
+    onCellFocus(x, y) {
+      const cell = document.getElementById(`cell-${x}-${y}`);
+      cell.style.backgroundColor = this.getColor();
+      this.matrix[x - 1][y - 1] = 1;
+      console.log(x, y);
     },
   },
 };
