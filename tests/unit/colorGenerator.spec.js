@@ -1,4 +1,4 @@
-import { getRGBColor } from "@/lib/colorGenerator.js";
+import { getRGBColor } from "@/helpers/colorGenerator.js";
 
 test("the first symbol of the color value should be '#'", () => {
   const color = getRGBColor();

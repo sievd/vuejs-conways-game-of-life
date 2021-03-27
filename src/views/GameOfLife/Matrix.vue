@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { getRGBColor } from "@/lib/colorGenerator.js";
+import { getRGBColor } from "@/helpers/colorGenerator.js";
 
 export default {
   name: "Matrix",
