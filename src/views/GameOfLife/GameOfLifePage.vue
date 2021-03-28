@@ -75,7 +75,7 @@ export default {
     runSimulation() {
       this.interval = setInterval(() => {
         this.matrix = this.gameOfLife.update();
-      }, 1);
+      }, 100);
     },
     onPauseButtonClicked() {
       clearInterval(this.interval);
